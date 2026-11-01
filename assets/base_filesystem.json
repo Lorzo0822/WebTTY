@@ -1,0 +1,33 @@
+{
+  "/": {
+    "boot": {
+      "grub": {
+        "grub.cfg": null
+      }
+    },
+    "etc": {
+      "fstab": null,
+      "passwd": null
+    },
+    "usr": {
+      "bin": {},
+      "sbin": {},
+      "lib": {}
+    },
+    "var": {
+      "log": {
+        "boot.log": null
+      }
+    },
+    "home": {
+      "user": {}
+    },
+    "root": {
+      ".bashrc": null
+    },
+    "tmp": {},
+    "bin": {},
+    "sbin": {},
+    "lib": {}
+  }
+}

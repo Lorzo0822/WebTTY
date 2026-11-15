@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTTY - Linux</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        #system {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        #display {
+            display: block;
+            background-color: #000;
+        }
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        #overlay button, #overlay input, #overlay textarea {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="system">
+        <canvas id="display">ERROR: Your browser does not support the HTML5 canvas tag.</canvas>
+        <div id="overlay"></div>
+	<input 
+	    id="mobile-keyboard" 
+	    type="text" 
+	    autocomplete="off" 
+	    autocorrect="off" 
+	    autocapitalize="off" 
+	    spellcheck="false"
+	    style="position: fixed; opacity: 0; top: 0; left: 0; width: 1px; height: 1px; border: none; pointer-events: none;"
+	/>
+    </div>
+
+    <script type="module" src="../scripts/TTY.js"></script>
+</body>
+</html>

@@ -7,11 +7,24 @@
     },
     "etc": {
       "fstab": null,
-      "passwd": null
+      "passwd": "root",
+      "hostname": "localhost"
     },
     "usr": {
-      "bin": {},
-      "sbin": {},
+      "bin": {
+        "ls": "./bin/ls.js",
+        "mkdir": "./bin/mkdir.js",
+        "pwd": "./bin/pwd.js",
+        "cd": "./bin/cd.js",
+        "help": "./bin/help.js",
+        "clear": "./bin/clear.js",
+        "cat": "./bin/cat.js",
+        "echo": "./bin/echo.js"
+      },
+      "sbin": {
+        "poweroff": "./sbin/poweroff.js",
+        "reboot": "./sbin/reboot.js"
+      },
       "lib": {}
     },
     "var": {

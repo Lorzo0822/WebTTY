@@ -102,7 +102,7 @@ function baseNode(path) {
     }
     return node !== null && typeof node === "object"
         ? { type: "directory", content: null }
-        : { type: "file", content: "" };
+        : { type: "file", content: typeof node === "string" ? node : "" };
 }
 
 function hiddenByTombstone(path, entries) {

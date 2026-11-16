@@ -19,13 +19,19 @@
         "help": "./bin/help.js",
         "clear": "./bin/clear.js",
         "cat": "./bin/cat.js",
-        "echo": "./bin/echo.js"
+        "echo": "./bin/echo.js",
+        "export": "./bin/export.js",
+        "wscript": "./bin/wscript.js"
       },
       "sbin": {
         "poweroff": "./sbin/poweroff.js",
         "reboot": "./sbin/reboot.js"
       },
-      "lib": {}
+      "lib": {
+        "wscript": {
+          
+        }
+      }
     },
     "var": {
       "log": {

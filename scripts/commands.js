@@ -42,8 +42,8 @@ function tokenize(commandLine) {
 }
 
 function resolvePath(path, cwd) {
-    if (path === "~") return normalizePath(localStorage.getItem("HOME") || "/root");
-    if (path.startsWith("~/")) return normalizePath(`${localStorage.getItem("HOME") || "/root"}/${path.slice(2)}`);
+    if (path === "~") return normalizePath(window.Environment.HOME || "/root");
+    if (path.startsWith("~/")) return normalizePath(`${window.Environment.HOME || "/root"}/${path.slice(2)}`);
     return normalizePath(path.startsWith("/") ? path : `${cwd}/${path}`);
 }
 

@@ -8,7 +8,7 @@ const canvas = document.getElementById("display");
 const hiddenInput = document.getElementById("mobile-keyboard");
 let commandBuffer = "";
 let terminalHalted = false;
-const homeDirectory = localStorage.getItem("HOME") || "/root";
+const homeDirectory = window.Environment.HOME || "/root";
 let currentDirectory = homeDirectory;
 
 function drawPrompt() {
@@ -17,8 +17,8 @@ function drawPrompt() {
         : currentDirectory.startsWith(`${homeDirectory}/`)
             ? `~${currentDirectory.slice(homeDirectory.length)}`
             : currentDirectory;
-    const username = localStorage.getItem("USERNAME") || "root";
-    const hostname = localStorage.getItem("HOSTNAME") || "localhost";
+    const username = window.Environment.USERNAME || "root";
+    const hostname = window.Environment.HOSTNAME || "localhost";
     drawText(`${username}@${hostname}:${homeRelativePath}$ `, false, "#ffffff", 16, "monospace");
 }
 

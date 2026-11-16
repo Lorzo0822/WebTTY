@@ -1,14 +1,16 @@
 import { initFilesystem, readFile } from "./filesystem.js";
 import { drawText } from "./draw.js";
 
+window.Environment = Object.assign(Object.create(null), {});
+
 async function boot() {
     try {
         await initFilesystem();
         drawText("[ $#37eb34OK$# ]: Inizialising filesystem");
-        localStorage.setItem("USERNAME", await readFile("/etc/passwd"));
-        localStorage.setItem("HOSTNAME", await readFile("/etc/hostname"));
+        window.Environment.USERNAME = await readFile("/etc/passwd");
+        window.Environment.HOSTNAME = await readFile("/etc/hostname");
         drawText("Boot Complete!");
-        drawText(`${localStorage.getItem("USERNAME")}@${localStorage.getItem("HOSTNAME")}:~$ `, false);
+        drawText(`${window.Environment.USERNAME}@${window.Environment.HOSTNAME}:~$ `, false);
         return true;
     } catch (error) {
 	    drawText(`[ $#ff0000ERROR$# ] ${error.message || error}`, false);

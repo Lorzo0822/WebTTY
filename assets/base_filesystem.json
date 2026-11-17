@@ -8,7 +8,8 @@
     "etc": {
       "fstab": null,
       "passwd": "root",
-      "hostname": "localhost"
+      "hostname": "localhost",
+      "os-release": "PRETTY_NAME='WebTTY 1.0'\nNAME='WebTTY'\nVERSION='1.0'\nID=webtty\nID_LIKE=debian\nHOME_URL='https://github.com/Lorzo0822/WebTTY'\nBUG_REPORT_URL='https://github.com/Lorzo0822/WebTTY/issues/new'\nLICENSE_URL='https://raw.githubusercontent.com/Lorzo0822/WebTTY/refs/heads/main/LICENSE'\nLOGO=webtty-logo"
     },
     "usr": {
       "bin": {
@@ -21,7 +22,9 @@
         "cat": "./bin/cat.js",
         "echo": "./bin/echo.js",
         "export": "./bin/export.js",
-        "wscript": "./bin/wscript.js"
+        "wscript": "./bin/wscript.js",
+        "apt": "./bin/apt.js",
+        "webfetch": "./bin/webfetch.js"
       },
       "sbin": {
         "poweroff": "./sbin/poweroff.js",
@@ -36,6 +39,14 @@
     "var": {
       "log": {
         "boot.log": null
+      },
+      "lib": {
+        "apt": {
+          "lists": {
+            "webtty.binaries.native": "../../apt/links.native",
+            "webtty.binaries.es5": "../../apt/links.es5"
+          }
+        }
       }
     },
     "home": {

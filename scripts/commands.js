@@ -65,7 +65,7 @@ async function exec(commandLine, cwd = "/root") {
     if (!command) return { output: "", cwd };
 
     let scriptPath;
-    for (const directory of ["/usr/bin", "/usr/sbin"]) {
+    for (const directory of ["/usr/bin", "/usr/sbin", "/etc"]) {
         try {
             scriptPath = await readFile(`${directory}/${command}`);
             break;
@@ -76,7 +76,7 @@ async function exec(commandLine, cwd = "/root") {
     if (scriptPath === undefined) throw new Error(`${command}: command not found`);
 
     // Command files name trusted ES modules shipped with the simulator.
-    if (typeof scriptPath !== "string" || !/^\.\/(bin|sbin)\/[\w-]+\.js$/.test(scriptPath)) {
+    if (typeof scriptPath !== "string" || !/^\.\/(bin|sbin|etc)\/[\w-]+(\.js)?$/.test(scriptPath)) {
         throw new Error(`${command}: invalid command script`);
     }
     const { default: run } = await import(new URL(scriptPath, import.meta.url));

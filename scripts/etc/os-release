@@ -1,0 +1,9 @@
+PRETTY_NAME="WebTTY 1.0"
+NAME="WebTTY"
+VERSION="1.0"
+ID=webtty
+ID_LIKE=debian
+HOME_URL="https://github.com/Lorzo0822/WebTTY"
+BUG_REPORT_URL="https://github.com/Lorzo0822/WebTTY/issues/new"
+LICENSE_URL="https://raw.githubusercontent.com/Lorzo0822/WebTTY/refs/heads/main/LICENSE"
+LOGO=webtty-logo

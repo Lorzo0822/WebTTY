@@ -14,8 +14,13 @@
             <li><a href="sims/index.html" class="menu-item">Linux</a></li>
             <li><a href="sims/safe-mode.html" class="menu-item">Linux (Recovery Mode)</a></li>
         </ul>
+        <div id="kernelParams" class="hide">
+            <h3>Add kernel parameters</h3>
+            <input id="inputKernelParam" type="text">
+            <p>See the markdown in the github repository for info. <br> Press <span id="click2" onclick="openKernelParams(); return false;">'Esc'</span> key to return to distro menu.</p>
+        </div>
     </div>
-    <p id="comment">Use the arrow keys to navigate and Enter to select.</p>
+    <p id="comment">Use the arrow keys to navigate and Enter to select. <br>Select a distro and press the <span id="click" onclick="openKernelParams(); return false;">'e'</span> key to open kernel parameters.</p>
 </body>
 <script src="scripts/grub.js"></script>
 </html>

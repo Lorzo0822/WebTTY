@@ -19,8 +19,11 @@ export default async function webfetch({ args, cwd, resolvePath }) {
         })
     );
 
-    const canvas = document.getElementById("display");
-    const gl = canvas?.getContext("webgl2") || canvas?.getContext("webgl");
+    const canvas = document.createElement("canvas");
+    const gl2 = canvas.getContext("webgl2");
+    const gl1 = canvas.getContext("webgl");
+
+    const gl = gl2 || gl1;
     const debugInfo = gl?.getExtension("WEBGL_debug_renderer_info");
 
     const webglRenderer = debugInfo

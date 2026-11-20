@@ -24,7 +24,8 @@
         "export": "./bin/export.js",
         "wscript": "./bin/wscript.js",
         "apt": "./bin/apt.js",
-        "webfetch": "./bin/webfetch.js"
+        "webfetch": "./bin/webfetch.js",
+        "uname": "./bin/uname.js"
       },
       "sbin": {
         "poweroff": "./sbin/poweroff.js",
@@ -43,8 +44,7 @@
       "lib": {
         "apt": {
           "lists": {
-            "webtty.binaries.native": "../../apt/links.native",
-            "webtty.binaries.es5": "../../apt/links.es5"
+            "webtty.binaries": "../../apt/links.json"
           }
         }
       }

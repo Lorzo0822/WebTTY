@@ -1,0 +1,18 @@
+{
+    "ver": "1",
+    "es5": {
+
+    },
+    "wasm": {
+
+    },
+    "native": {
+        "wasmc": {
+            "name": "WASM compiler in browser",
+            "description": "Compile WASM directly in your browser from source C++",
+            "version": "1.0.0",
+            "file": "wasmc.pkg.tar.gz",
+            "MD5": ""
+        }
+    }
+}

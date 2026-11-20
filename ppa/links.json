@@ -1,6 +1,8 @@
 {
-    "ver": 1,
+    "ver": 2,
     "es5": {
+    },
+    "universal": {
 
     },
     "wasm": {
@@ -11,7 +13,14 @@
             "name": "WASM compiler in browser",
             "description": "Compile WASM directly in your browser from source C++",
             "version": "1.0.0",
-            "file": "wasmc.pkg.tar.gz",
+            "file": "wasmc.pkg",
+            "MD5": ""
+        },
+        "webfetch": {
+            "name": "fastfetch but for WebTTY",
+            "description": "A clone of fastfetch but adapted for WebTTY",
+            "version": "1.0.0",
+            "file": "webfetch.pkg",
             "MD5": ""
         }
     }

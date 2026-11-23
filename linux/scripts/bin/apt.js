@@ -205,9 +205,15 @@ export default async function apt({ args, cwd, resolvePath }) {
             );
             const addedLinks = [];
 
-            for (const link of links) {
+            for (let link of links) {
                 try {
-                    const response = await fetch(link);
+                    let response = null;
+
+                    if (!link.endsWith("links.json")) {
+                        response = await fetch(link+`/${encodeURIComponent("links.json")}`);
+                    } else {
+                        response = await fetch(link);
+                    }
 
                     if (!response.ok) {
                         stderr(1, `apt: could not fetch given url: "${link}"`);
@@ -219,8 +225,8 @@ export default async function apt({ args, cwd, resolvePath }) {
                         continue;
                     }
 
-                    savedLinks.add(link);
-                    addedLinks.push(link);
+                    savedLinks.add(link.endsWith("links.json") ? link.replace("/links.json", "") : link);
+                    addedLinks.push(link.endsWith("links.json") ? link.replace("/links.json", "") : link);
                 } catch {
                     stderr(1, `apt: could not fetch given url: "${link}"`);
                 }

@@ -1,6 +1,7 @@
 import { boot } from './boot.js';
 import { drawText, clearScreen, drawInputCharacter, eraseInputCharacter, resetInputHistory } from './draw.js';
 import { exec } from './commands.js';
+import { normalizePath, readFile } from './filesystem.js';
 
 const bootReady = boot();
 
@@ -47,6 +48,36 @@ hiddenInput.addEventListener("input", (e) => {
     }
 });
 
+function resolvePath(path, cwd) {
+    if (path === "~") return normalizePath(window.Environment.HOME || "/root");
+    if (path.startsWith("~/")) return normalizePath(`${window.Environment.HOME || "/root"}/${path.slice(2)}`);
+    return normalizePath(path.startsWith("/") ? path : `${cwd}/${path}`);
+}
+
+let history = [];
+let historyIndex = -1;
+let historyReady = bootReady
+    .then(() => readFile(resolvePath("~/.bash_history")))
+    .then((result) => {
+        history = result.split(/\r?\n/).filter(Boolean);
+    })
+    .catch((error) => {
+        if (error.code !== "ENOENT") drawText(error.message, true, "#ff5555", 16, "monospace");
+    });
+
+function showInput(value) {
+    while (eraseInputCharacter()) { /* Clear the currently displayed command. */ }
+    commandBuffer = value;
+    for (const char of commandBuffer) drawInputCharacter(char);
+    hiddenInput.value = "";
+}
+
+function recallHistory(index) {
+    if (index < 0 || index >= history.length) return;
+    historyIndex = index;
+    showInput(history[history.length - 1 - historyIndex]);
+}
+
 hiddenInput.addEventListener("keydown", (e) => {
     if (terminalHalted) {
         e.preventDefault();
@@ -56,10 +87,15 @@ hiddenInput.addEventListener("keydown", (e) => {
         e.preventDefault();
         const line = commandBuffer;
         commandBuffer = "";
+        historyIndex = -1;
         resetInputHistory();
         hiddenInput.value = "";
         drawText("\n", true, "#ffffff", 16, "monospace");
-        bootReady.then(() => exec(line, currentDirectory))
+        historyReady.then(() => {
+            history.push(line);
+            historyIndex = -1;
+            return exec(line, currentDirectory);
+        })
             .then((result) => {
                 currentDirectory = result.cwd;
                 if (result.halt) {
@@ -81,6 +117,15 @@ hiddenInput.addEventListener("keydown", (e) => {
         commandBuffer = commandBuffer.slice(0, -1);
         eraseInputCharacter();
         hiddenInput.value = "";
+    } else if (e.key === "ArrowUp" && history.length > 0) {
+        e.preventDefault();
+        recallHistory(Math.min(historyIndex + 1, history.length - 1));
+    } else if (e.key === "ArrowDown" && historyIndex > 0) {
+        e.preventDefault();
+        recallHistory(historyIndex - 1);
+    } else if (e.key === "ArrowDown" && historyIndex === 0) {
+        e.preventDefault();
+        historyIndex = -1;
+        showInput("");
     }
 });
-

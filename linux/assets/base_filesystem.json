@@ -44,7 +44,7 @@
       "lib": {
         "apt": {
           "lists": {
-            "links": "https://raw.githubusercontent.com/Lorzo0822/WebTTY/refs/heads/main/ppa/links.json",
+            "links": "https://raw.githubusercontent.com/Lorzo0822/WebTTY/refs/heads/main/ppa",
             "webtty.binaries": "{\"ver\":0}"
           }
         }

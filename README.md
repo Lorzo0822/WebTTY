@@ -13,7 +13,7 @@ With:
 Before continuing please verify your browser compatibility [here](#requirements).
 
 ## Online webpage
-You can visit [github pages](https://lorzo0822.github.io/WebTTY) and choose between legacy (for older browser from ES5) and non legacy linux (with modern javascript).
+You can visit [github pages](https://lorzo0822.github.io/WebTTY/linux) and choose between legacy (for older browser from ES5) and non legacy linux (with modern javascript).
 
 ## Using a local server on your device
 You can download the repository and run a local server on your device with a local server (e.g. python http.server)

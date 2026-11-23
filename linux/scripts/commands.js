@@ -48,6 +48,15 @@ function resolvePath(path, cwd) {
 }
 
 async function exec(commandLine, cwd = "/root") {
+    const bashHistory = resolvePath("~/.bash_history");
+    let history = "";
+    try {
+        history = await readFile(bashHistory);
+    } catch (error) {
+        if (error.code !== "ENOENT") throw error;
+    }
+    await writeFile(bashHistory, `${history}${commandLine}\n`);
+
     const tokens = tokenize(commandLine);
     const redirectIndex = tokens.indexOf(">");
     let redirectPath;

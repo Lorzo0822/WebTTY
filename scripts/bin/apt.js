@@ -1,4 +1,5 @@
 import { readFile, writeFile, mkdir, exists, normalizePath } from "../filesystem.js";
+import { stderr, stdout } from "../TTY.js";
 
 async function ensureDirectory(path) {
     if (await exists(path)) return;
@@ -92,6 +93,8 @@ export default async function apt({ args, cwd, resolvePath }) {
                 currentPkgs = null;
             }
 
+            stdout("Testing")
+
             const response = await fetch("https://raw.githubusercontent.com/Lorzo0822/WebTTY/refs/heads/main/ppa/links.json");
             if (!response.ok) throw new Error(`apt: could not connect to server, status: ${response.status}`);
 
@@ -182,6 +185,50 @@ export default async function apt({ args, cwd, resolvePath }) {
             return `apt: installed ${targetPkg}:${selectedPkg.category} (${selectedPkg.version || "unknown version"})`;
         }
 
+        case "add-repo": {
+            const linksPath = resolvePath("/var/lib/apt/lists/links");
+            const links = args.slice(1).map(link => link.replace(/^"|"$/g, ""));
+
+            if (links.length === 0) {
+                throw new Error("apt: please specify a link to a repository");
+            }
+
+            let currentLinks = "";
+            try {
+                currentLinks = await readFile(linksPath);
+            } catch (error) {
+                if (error.code !== "ENOENT") throw error;
+            }
+
+            const savedLinks = new Set(
+                currentLinks.split("\n").map(link => link.trim()).filter(Boolean)
+            );
+            const addedLinks = [];
+
+            for (const link of links) {
+                try {
+                    const response = await fetch(link);
+
+                    if (!response.ok) {
+                        stderr(1, `apt: could not fetch given url: "${link}"`);
+                        continue;
+                    }
+
+                    if (savedLinks.has(link)) {
+                        stdout(`apt: link "${link}" already exists, skipping`);
+                        continue;
+                    }
+
+                    savedLinks.add(link);
+                    addedLinks.push(link);
+                } catch {
+                    stderr(1, `apt: could not fetch given url: "${link}"`);
+                }
+            }
+
+            await writeFile(linksPath, [...savedLinks].join("\n"));
+            return `apt: repos added: ${addedLinks.join(", ")}`;
+        }
 
         default:
             throw new Error(`apt: invalid operation ${args[0]}`);

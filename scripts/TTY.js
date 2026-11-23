@@ -22,6 +22,14 @@ function drawPrompt() {
     drawText(`${username}@${hostname}:${homeRelativePath}$ `, false, "#ffffff", 16, "monospace");
 }
 
+export function stdout(message) {
+    drawText(String(message), true, "#FFFFFF", 16, "monospace");
+}
+
+export function stderr(code, message) {
+    drawText(String(message), true, "#FF0000", 16, "monospace");
+}
+
 canvas.addEventListener("pointerdown", (e) => {
     e.preventDefault(); 
     hiddenInput.focus();

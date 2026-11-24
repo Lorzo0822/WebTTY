@@ -1,35 +1,46 @@
 # WebTTY
-A complete Linux simulation inside your browser.
+<img align="right" width="180" src="./docs/assets/tux.svg" alt="ASCII Art">
 
-All in HTML5 all the way fron ES5 to modern browsers.
-With:
-- *persistent filesystem* with indexedDB
-- most *common commands fully simulated*
-- actual *custom package manager* for comunity driven PPA
-- *comunity driven PPAs*
-- *custom programming language*
+A complete Linux simulation inside your browser, built entirely in HTML5 with support from ES5 to modern browsers.
+
+Features:
+- **Persistent filesystem** using IndexedDB
+- Most **common commands fully simulated**
+- A **custom package manager** for community-driven PPAs
+- **Community-driven PPAs**
+- **Custom programming language**
+
+<br clear="left"/>
+
+### TODO list
+- [ ] Add custom programming language
+- [x] ~~Add basic apt~~
+- [ ] Translate to ES5
+- [ ] Add more commands
+- [ ] Make a DE (Desktop Environment)
+- [ ] Add polyfills
+
+## Index
+- [README](.)
+- [Commands list](./docs/commands.md)
+- [Requirements](./docs/requirements.md)
+- [Making your own PPA](./docs/making-own-PPA.md)
+
+<hr>
 
 # Where is it?
-Before continuing please verify your browser compatibility [here](#requirements).
+Before continuing, please verify your browser compatibility [here](./docs/requirements.md).
 
 ## Online webpage
-You can visit [github pages](https://lorzo0822.github.io/WebTTY/linux) and choose between legacy (for older browser from ES5) and non legacy linux (with modern javascript).
+You can visit [GitHub Pages](https://lorzo0822.github.io/WebTTY/linux) and choose between the legacy version (for older browsers supporting ES5) and the modern version (using modern JavaScript).
 
 ## Using a local server on your device
-You can download the repository and run a local server on your device with a local server (e.g. python http.server)
+You can download the repository and run a local server on your device to host the files (e.g., `python -m http.server`). [Direct Download link](https://github.com/Lorzo0822/WebTTY/archive/refs/heads/main.zip)
 
-## Using a one file without a server
-You can use a all-in-one html file for plug&play use in the browser. Downloadable at [the latest release]()
+## Using a single file without a server
+You can use an all-in-one HTML file for plug-and-play use directly in your browser. Be aware that it may not always be up to date with the latest source code, as I build releases manually. Every time a new update is released, you will have to download it again since I have no access to your local storage (though you will be notified about new releases). Downloadable from [the latest release](https://github.com/Lorzo0822/WebTTY/releases/latest).
 
-# Requirements
-WebTTY works from ES5 all the way to modern browser provided that they support HTML5 and functions like '.startswith()' listed below here.
+<hr>
 
-| <img style="width:48px;height:48px;object-fit:contain;" src="./assets/images/browsers/chrome.png"> | <img style="width:48px;height:48px;object-fit:contain;" src="./assets/images/browsers/firefox.png"> | <img style="width:48px;height:48px;object-fit:contain;" src="./assets/images/browsers/opera.png"> | <img style="width:48px;height:48px;object-fit:contain;" src="./assets/images/browsers/safari.png"> | <img style="width:48px;height:48px;object-fit:contain;" src="./assets/images/browsers/edge.png"> |
-|---|---|---|---|---|
-| Chrome| Firefox| Opera| Safari| Microsoft Edge |
-| Chromium 59| Firefox 67| Opera 46| Safari 5| Edge 79 |
-| June 2017| May 2019| June 2017| June 2010| January 2020 |
-
-### Required functions
-- .startswith()
-- object
+### License
+This project is released under the [MIT License](./LICENSE).
